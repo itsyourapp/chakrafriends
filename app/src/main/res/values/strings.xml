@@ -1,0 +1,11 @@
+<resources>
+    <!-- Global -->
+    <string name="app_name">Chakra Friends</string>
+
+    <!-- Login -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_error">There has been an error logging in.</string>
+
+</resources>

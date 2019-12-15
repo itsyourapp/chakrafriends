@@ -2,16 +2,15 @@ package app.itsyour.chakra.android.feature.login
 
 import androidx.lifecycle.ViewModel
 import app.itsyour.chakra.android.app.network.models.UserSessionState
+import app.itsyour.chakra.android.feature.login.cases.LoginUseCase
 import app.itsyour.chakra.android.feature.login.models.LoginRequest
 import app.itsyour.chakra.android.feature.login.models.LoginResponse
-import app.itsyour.chakra.android.feature.login.models.LoginUseCase
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LoginViewModel
@@ -36,7 +35,7 @@ class LoginViewModel
         subscriptions += useCase.login(LoginRequest(action.email, action.password))
             .flatMap(::onResponse)
             .onErrorResumeNext(::onError)
-            .delay(1000, TimeUnit.MILLISECONDS)
+//            .delay(1000, TimeUnit.MILLISECONDS)
             .startWith(LoginContract.UiModel.State.Loading)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -51,4 +50,9 @@ class LoginViewModel
     private fun onError(error: Throwable): Observable<LoginContract.UiModel>
 //          = Observable.just(LoginContract.UiModel.State.Error(error.localizedMessage?:""))
             = Observable.just(LoginContract.UiModel.State.Success)
+
+    override fun onCleared() {
+        super.onCleared()
+        subscriptions.clear()
+    }
 }

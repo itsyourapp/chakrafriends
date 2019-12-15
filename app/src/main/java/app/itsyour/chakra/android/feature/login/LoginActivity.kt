@@ -1,5 +1,7 @@
 package app.itsyour.chakra.android.feature.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -21,7 +23,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+
 class LoginActivity : DaggerAppCompatActivity() {
+
+    companion object {
+        fun navigateTo(context: Context)
+            = context.startActivity(Intent(context, LoginActivity::class.java)
+                .apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK })
+    }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.itsyour.chakra.android.app.network.models.StagingEnv
 import app.itsyour.chakra.android.app.network.models.UserSessionState
+import app.itsyour.chakra.android.feature.login.cases.LoginUseCase
 import app.itsyour.chakra.android.feature.login.models.LoginApi
-import app.itsyour.chakra.android.feature.login.models.LoginUseCase
 import dagger.Binds
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -35,6 +35,7 @@ abstract class LoginModule {
     @Inject constructor(
         private val loginUseCase: LoginUseCase,
         private val userSessionState: UserSessionState) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T
                 = LoginViewModel(loginUseCase,userSessionState) as T }
 }

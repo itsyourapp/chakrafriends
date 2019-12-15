@@ -8,4 +8,18 @@
     <string name="login_button">Login</string>
     <string name="login_error">There has been an error logging in.</string>
 
+    <!-- Feed -->
+    <string name="feed">Feed</string>
+    <string name="feed_empty">No items</string>
+
+    <!-- Profile -->
+    <string name="profile">Your Profile</string>
+
+    <!-- Locations -->
+    <string name="locations">Locations</string>
+    <string name="locations_add">Add Location</string>
+
+    <!-- Logout -->
+    <string name="logout">Logout</string>
+    <string name="logout_goodbye">See you soon</string>
 </resources>

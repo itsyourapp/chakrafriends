@@ -5,9 +5,6 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-/**
- * @author https://github.com/Dumblydore
- */
 @AppScoped
 class CacheInterceptor : Interceptor {
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EB4A41</color>
-    <color name="colorPrimaryDark">#B20219</color>
-    <color name="colorAccent">#7986CB</color>
-    <color name="colorAccentDark">#7A84CB</color>
-    <color name="surface">#fdebee</color>
+    <color name="colorPrimary">#B20219</color>
+    <color name="colorPrimaryDark">#4C0000</color>
+    <color name="colorAccent">#5798DC</color>
+    <color name="colorAccentDark">#003276</color>
+    <color name="colorSurface">#FDEBEE</color>
+    <color name="colorGrey">#757575</color>
 </resources>

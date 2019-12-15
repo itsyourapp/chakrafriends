@@ -18,7 +18,6 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Binds
-import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import okhttp3.Cache
@@ -31,7 +30,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
-@Module
+@dagger.Module
 abstract class AppModule {
 
     @Binds
@@ -115,14 +114,5 @@ abstract class AppModule {
         @AppScoped
         @Provides @JvmStatic
         fun userSessionState() = UserSessionState(null)
-
-//        @Provides
-//        @JvmStatic @AppScoped
-//        fun loginApi(@Named("Unauthenticated") client: OkHttpClient, builder: Retrofit.Builder) : LoginApi =
-//            builder
-//                .client(client)
-//                .baseUrl(StagingEnv.loginBase)
-//                .build()
-//                .create<LoginApi>(LoginApi::class.java)
     }
 }

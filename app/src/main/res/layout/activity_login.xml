@@ -98,6 +98,7 @@
             android:indeterminateTint="?android:attr/textColorPrimary"
             android:visibility="gone"
             tools:visibility="visible" />
+
     </FrameLayout>
 
     <TextView

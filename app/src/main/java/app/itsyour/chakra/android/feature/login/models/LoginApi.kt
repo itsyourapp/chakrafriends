@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface LoginApi {
-    @POST("users/auth")
+    @POST("login")
     @Headers(CacheInterceptor.NO_CACHE_HEADER)
     fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
 }

@@ -1,13 +1,13 @@
 package app.itsyour.chakra.android.app.network.models
 
 interface Environment {
-    val loginBase: String
+    val baseUrl: String
 }
 
 object StagingEnv : Environment {
-    override val loginBase = "http://itsyour-staging.app/a/chakra/v1/login/"
+    override val baseUrl = "http://10.0.2.2:3001/api/v1/"
 }
 
 object ProductionEnv : Environment {
-    override val loginBase = "http://itsyour.app/a/chakra/v1/login/"
+    override val baseUrl = "localhost:3001/api/v1/"
 }

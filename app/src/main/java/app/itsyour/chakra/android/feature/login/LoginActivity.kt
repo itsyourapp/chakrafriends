@@ -5,11 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.View
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import app.itsyour.chakra.android.R
 import app.itsyour.chakra.android.feature.main.MainActivity
+import app.itsyour.chakra.android.view.LoadingDialogFragment
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent
@@ -22,7 +23,6 @@ import io.reactivex.rxkotlin.plusAssign
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-
 
 class LoginActivity : DaggerAppCompatActivity() {
 
@@ -60,22 +60,36 @@ class LoginActivity : DaggerAppCompatActivity() {
 
     private fun updateUi(model: LoginContract.UiModel) {
         when (model) {
+            is LoginContract.UiModel.State.Ready -> showReadyState()
             is LoginContract.UiModel.State.Loading -> showLoadingState()
             is LoginContract.UiModel.State.Error -> showErrorState()
             is LoginContract.UiModel.State.Success -> showSuccessState()
         }
     }
 
+    private fun showReadyState() {
+        hideBottomSheet()
+        loginError.visibility = View.GONE
+    }
+
     private fun showLoadingState() {
-        loginButton_button.isVisible = false
-        loginButton_progress.isVisible = true
-        loginError.isVisible = false
+        showBottomSheet()
+        loginError.visibility = View.GONE
     }
 
     private fun showErrorState() {
-        loginButton_button.isVisible = true
-        loginButton_progress.isVisible = false
-        loginError.isVisible = true
+        hideBottomSheet()
+        loginError.visibility = View.VISIBLE
+    }
+
+    private fun showBottomSheet() {
+        LoadingDialogFragment.newInstance()
+            .show(supportFragmentManager, LoadingDialogFragment.TAG)
+    }
+
+    private fun hideBottomSheet() {
+        (supportFragmentManager.findFragmentByTag(LoadingDialogFragment.TAG)
+                as? LoadingDialogFragment)?.dismiss()
     }
 
     private fun showSuccessState() {
@@ -83,8 +97,8 @@ class LoginActivity : DaggerAppCompatActivity() {
     }
 
     private fun observeLoginButton() {
-        subscriptions += loginEnabled.subscribe(loginButton_button::setEnabled)
-        subscriptions += loginButton_button.clicks().subscribe {
+        subscriptions += loginEnabled.subscribe(loginButton::setEnabled)
+        subscriptions += loginButton.clicks().subscribe {
             viewModel.onAction(LoginContract.Action.Login(loginEmail.text.toString(),
                 loginPassword.text.toString())) }
     }

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.itsyour.chakra.android.app.network.models.StagingEnv
 import app.itsyour.chakra.android.app.network.models.UserSessionState
-import app.itsyour.chakra.android.feature.login.cases.LoginUseCase
 import app.itsyour.chakra.android.feature.login.models.LoginApi
+import app.itsyour.chakra.android.feature.login.models.LoginInteractor
 import dagger.Binds
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -23,9 +23,13 @@ abstract class LoginModule {
         fun loginApi(@Named("Unauthenticated") client: OkHttpClient, builder: Retrofit.Builder) : LoginApi =
             builder
                 .client(client)
-                .baseUrl(StagingEnv.loginBase)
+                .baseUrl(StagingEnv.baseUrl)
                 .build()
                 .create<LoginApi>(LoginApi::class.java)
+
+        @Provides
+        @JvmStatic @LoginScope
+        fun loginInteractor(loginApi: LoginApi) : LoginInteractor = LoginInteractor(loginApi)
     }
 
     @Binds
@@ -33,7 +37,7 @@ abstract class LoginModule {
 
     class LoginViewModelFactory
     @Inject constructor(
-        private val loginUseCase: LoginUseCase,
+        private val loginUseCase: LoginInteractor,
         private val userSessionState: UserSessionState) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T

@@ -6,4 +6,5 @@
     <color name="colorAccentDark">#003276</color>
     <color name="colorSurface">#FDEBEE</color>
     <color name="colorGrey">#757575</color>
+    <color name="colorFontColor">#262626</color>
 </resources>

@@ -42,8 +42,7 @@
                     tools:visibility="visible" />
 
             </FrameLayout>
+
         </com.google.android.material.card.MaterialCardView>
-
     </app.itsyour.chakra.android.app.view.ScrollChildSwipeRefreshLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

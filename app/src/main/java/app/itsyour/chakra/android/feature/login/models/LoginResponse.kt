@@ -3,4 +3,4 @@ package app.itsyour.chakra.android.feature.login.models
 import com.google.gson.annotations.Expose
 
 data class LoginResponse(
-    @Expose var access_token: String)
+    @Expose var accessToken: String)

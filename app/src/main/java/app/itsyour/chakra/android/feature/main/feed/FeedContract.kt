@@ -7,5 +7,17 @@ interface FeedContract : Contract {
         object GetFeed : Action()
     }
 
-    sealed class UiModel
+    sealed class UiModel {
+        class Feed(val items: List<FeedItem>) : UiModel()
+        class Error(val errorMessage: String) : UiModel()
+    }
+
+    sealed class FeedItem(val id: Int) {
+        data class UpcomingEvent(
+            val date: String,
+            val description: String) : FeedItem(0)
+
+        data class FriendConvo(
+            val message: String) : FeedItem(1)
+    }
 }

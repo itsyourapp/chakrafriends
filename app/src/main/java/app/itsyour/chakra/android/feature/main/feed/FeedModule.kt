@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.itsyour.chakra.android.app.network.models.StagingEnv
 import app.itsyour.chakra.android.feature.main.feed.domain.GetFeedUseCase
-import app.itsyour.chakra.android.feature.main.feed.models.FeedApi
+import app.itsyour.chakra.android.feature.main.feed.model.FeedApi
 import dagger.Binds
 import dagger.Provides
 import okhttp3.OkHttpClient

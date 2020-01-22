@@ -2,8 +2,8 @@ package app.itsyour.chakra.android.feature.main.feed.domain
 
 import app.itsyour.chakra.android.app.network.Result
 import app.itsyour.chakra.android.feature.main.feed.FeedContract
-import app.itsyour.chakra.android.feature.main.feed.models.FeedApi
-import app.itsyour.chakra.android.feature.main.feed.models.response.FeedResponse
+import app.itsyour.chakra.android.feature.main.feed.model.FeedApi
+import app.itsyour.chakra.android.feature.main.feed.model.response.FeedResponse
 import javax.inject.Inject
 
 class GetFeedUseCase

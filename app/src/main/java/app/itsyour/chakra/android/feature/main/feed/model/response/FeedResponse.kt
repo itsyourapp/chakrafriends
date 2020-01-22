@@ -1,4 +1,4 @@
-package app.itsyour.chakra.android.feature.main.feed.models.response
+package app.itsyour.chakra.android.feature.main.feed.model.response
 
 import com.google.gson.annotations.Expose
 
